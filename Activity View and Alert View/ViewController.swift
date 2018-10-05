@@ -82,7 +82,7 @@ class ViewController: UIViewController {
         // boundsは画面のViewが基準。frameは親Viewが基準。
         customView.frame = CGRect(
             x: view.safeAreaInsets.left,
-            y: view.safeAreaInsets.top, // safeAreaの一番うえを基準にしているｒ
+            y: view.safeAreaInsets.top, // safeAreaの一番うえを基準にしている
             width: view.frame.maxX,
             height: view.frame.maxY
         )
@@ -96,7 +96,7 @@ class ViewController: UIViewController {
         // instance UIAlertController
         let myAlertController = UIAlertController(title: "Alert Title", message: "Message: This is a test", preferredStyle: .alert)
 
-        // set OK button
+        // set OK button & print("OK Test!") in debug console
         let myOKButton = UIAlertAction(title: "OK", style: .default){ action in print("OK Test!")}
 
         // add myOKButton on myAlertController as action
