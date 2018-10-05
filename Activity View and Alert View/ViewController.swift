@@ -27,15 +27,15 @@ class ViewController: UIViewController {
         super.viewDidLayoutSubviews()
 
 
-//        customView.backgroundColor = UIColor.red // customViewを赤色にする
+        customView.backgroundColor = UIColor(red:234/255, green:234/255, blue:234/255, alpha:1)  // UIColorで色を指定する
 
 
         // boundsは画面のViewが基準。frameは親Viewが基準。
         customView.frame = CGRect(
-            x: view.frame.origin.x + 200,
-            y: view.safeAreaInsets.top + 400, // safeAreaの一番うえを基準にしているｒ
-            width: view.frame.width - 50 * 2,
-            height: 200
+            x: view.safeAreaInsets.left,
+            y: view.safeAreaInsets.top, // safeAreaの一番うえを基準にしているｒ
+            width: view.frame.maxX,
+            height: view.frame.maxY
         )
         // ************************************************
     }
@@ -64,7 +64,7 @@ class CustomView: UIView {
         super.layoutSubviews()
 
         // Button BackGround Color
-        button01.backgroundColor = UIColor.blue
+        button01.backgroundColor = UIColor(red:8/255, green:217/255, blue:214/255, alpha:1)
 
         // Button Title
         button01.setTitle("Button", for: .normal)
@@ -75,18 +75,14 @@ class CustomView: UIView {
         // backColor
         //self.backgroundColor = UIColor.cyan
 
-        // set Size
-        let bWidth: CGFloat = 300
-        let bHeight: CGFloat = 100
-
-//        // set X, Y Position
-//        let posX: CGFloat = 0 // self.bounds.origin.x + 100
-//        let posY: CGFloat = 0 // self.frame.height/2 - bHeight/2
-
-        button01.bounds = CGRect(
-            x: 0, y:0, width: bWidth, height: bHeight
+        button01.frame = CGRect( // boundsは画面のViewが基準。frameは親Viewが基準。
+            x: bounds.origin.x + 50,  // CustomViewのlabelのレイアウトを組む際には、frameではなく boundsを使う
+            y: bounds.origin.y + 300,
+            width: bounds.width - 50 * 2,
+            height: 100
         )
     }
     //*********************************************
-}
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++
+}
