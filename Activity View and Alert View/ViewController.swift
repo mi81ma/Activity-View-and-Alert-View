@@ -11,36 +11,6 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    // CustomView Initialize
-    let customView = CustomView()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // customView is ridden on view
-        view.addSubview(customView)
-    }
-
-    override func viewDidLayoutSubviews() { // ViewControllerクラスではviewDidLayoutSubviewsメソッド内でレイアウトを組む
-        super.viewDidLayoutSubviews()
-
-
-        customView.backgroundColor = UIColor(red:234/255, green:234/255, blue:234/255, alpha:1)  // UIColorで色を指定する
-
-
-        // boundsは画面のViewが基準。frameは親Viewが基準。
-        customView.frame = CGRect(
-            x: view.safeAreaInsets.left,
-            y: view.safeAreaInsets.top, // safeAreaの一番うえを基準にしているｒ
-            width: view.frame.maxX,
-            height: view.frame.maxY
-        )
-        // ************************************************
-    }
-}
-
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++
 //CustomView Class inorder to design UIButton
 
@@ -83,6 +53,60 @@ class CustomView: UIView {
         )
     }
     //*********************************************
-
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++
 }
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+class ViewController: UIViewController {
+
+    // CustomView Initialize
+    let customView = CustomView()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // customView is ridden on view
+        view.addSubview(customView)
+
+        customView.button01.addTarget(self, action: #selector(ViewController.onClickUpAlert), for: UIControl.Event.touchUpInside)
+    }
+
+    // ************************************************
+    override func viewDidLayoutSubviews() { // ViewControllerクラスではviewDidLayoutSubviewsメソッド内でレイアウトを組む
+        super.viewDidLayoutSubviews()
+
+
+        customView.backgroundColor = UIColor(red:234/255, green:234/255, blue:234/255, alpha:1)  // UIColorで色を指定する
+
+
+        // boundsは画面のViewが基準。frameは親Viewが基準。
+        customView.frame = CGRect(
+            x: view.safeAreaInsets.left,
+            y: view.safeAreaInsets.top, // safeAreaの一番うえを基準にしているｒ
+            width: view.frame.maxX,
+            height: view.frame.maxY
+        )
+    }
+     // ************************************************
+
+
+// Pop up the Alert when push Button
+    @objc func onClickUpAlert(sender: UIButton) {
+
+        // instance UIAlertController
+        let myAlertController = UIAlertController(title: "Alert Title", message: "Message: This is a test", preferredStyle: .alert)
+
+        // set OK button
+        let myOKButton = UIAlertAction(title: "OK", style: .default){ action in print("OK Test!")}
+
+        // add myOKButton on myAlertController as action
+        myAlertController.addAction(myOKButton)
+
+//        controller.title = "Test Alert"
+//        controller.message = "This is a test"
+
+        present(myAlertController, animated: true, completion: nil)
+
+    }
+}
+
